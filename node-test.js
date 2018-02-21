@@ -5,5 +5,3 @@ function logMsg(msg) {
 		console.log(msg);
 	};
 }
-
-tests();
