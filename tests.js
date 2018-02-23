@@ -1,16 +1,19 @@
 "use strict";
 
-(function(context) {
+(function UMD(name, context, dependency, definition) {
         
-    var tests = function hello(logMsg) {
-        return logMsg("Hello")();
-    }
-
     if (typeof module !== 'undefined' && module.exports) {
-        exports = module.exports = tests;
+        exports = module.exports = definition(require(dependency));
     } else {
-        context.tests = tests;
+        context[name] = definition();
+    }
+    
+})("HELLO_test", this, './hello', function DEF() {
+
+    function tests(logMsg) {
+        logMsg(HELLO())();
     }
 
-})(this);
+    return tests;
+});
 
